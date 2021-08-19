@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
+const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://jeanbassiste:scoopinou@cluster0.dwfbx.mongodb.net/cluster0?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -17,6 +18,10 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json())
+
+app.use('/api/auth/signup', userRoutes);
+
+app.use('api/auth/login', userRoutes);
 
 app.use((req, res, next) => {
     console.log('Le server est lancé !');
