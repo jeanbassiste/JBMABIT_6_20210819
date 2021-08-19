@@ -1,5 +1,6 @@
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
+const jwt = requipe('jsonwebtoken');
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(re.body.password, 10)
@@ -38,7 +39,11 @@ exports.login = (req, res, next) => {
             }
             res.status(200).json({
                 userId: user._id,
-                token: 'TOKEN'
+                token: jwt.signup(
+                    { userId: user._id },
+                    'RANDOM_TOKEN_SECRET',
+                    { expiresIn: '24h'}
+                )
             });
         })
         .catch(error => res.status(500).json({ error }));
