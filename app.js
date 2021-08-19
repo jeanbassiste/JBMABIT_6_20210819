@@ -20,7 +20,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/api/auth/signup', userRoutes);
-
 app.use('api/auth/login', userRoutes);
 
 app.use((req, res, next) => {
