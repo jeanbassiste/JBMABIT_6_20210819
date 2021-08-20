@@ -1,6 +1,7 @@
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const env = require('dotenv');
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
@@ -17,8 +18,19 @@ exports.signup = (req, res, next) => {
             }
         ).catch(
             (error) => {
+                //find sur la propriété des objets ? Trouver comment afficher l'erreur, quelle qu'elle soit
+                //console.log(Object.getOwnPropertyNames(error.errors));
+                console.log(error.errors.email);
+                console.log(Object.getOwnPropertyNames(error.errors));
+                var message = "" ;
+                Object.getOwnPropertyNames(error.errors).forEach(function (element) {
+                    console.log(element);
+                    //message += value;
+                });
+                //console.log(message);
                 res.status(400).json({
-                    error: error
+                    //message: error.errors.email.properties.message
+                    message: message
                 });
             }
         );
