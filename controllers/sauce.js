@@ -56,4 +56,36 @@ exports.deleteSauce = (req, res, next) => {
 };
 
 exports.likeSauce = (req, res, next) => {
+    const sauceToUpdate = Sauce.findOne({_id: req.params.id})
+    console.log('jusquici tout va bien. ' + 'Nombre de likes : ' + sauceToUpdate.likes + 'Nombre de dislikes : ' + sauceToUpdate.dislikes);
+    const likeLevel = req.body.like;
+    console.log(likeLevel);
+    
+    if(likeLeve=1){
+        sauceToUpdate.likes +=1;
+        console.log('Liked!')
+    }
+    else if (likeLevel=-1){
+        console.log('Disliked.');
+    }
+    else if(likeLevel=0){
+        console.log('On verra ça plus tard...')
+    }
+    //if()
+        /*.then((req) => {
+            if (req.body.like=1){
+                sauce.like += 1;
+                sauce.usersLiked += req.body.userId;
+                console.log('Liked!')
+            }
+            else if (req.body.like=-1){
+                sauce.dislike +=1;
+                sauce.usersDisliked += req.body.userId;
+                console.log('Disliked!')
+            }
+            else if(req.body.like=0){
+                console.log('On verra ça plus tard...')
+            }
+        })
+        .catch(error => res.status(400).json({error}))*/
 };
