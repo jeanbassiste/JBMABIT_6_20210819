@@ -76,8 +76,10 @@ exports.likeSauce = (req, res, next) => {
     if(likeLevel == 0){
         const sauce = Sauce.findOne({_id: req.params.id});
         console.log(sauce);
-        console.log(sauce.usersLiked);
+        console.log(sauce['usersLiked']);
+        console.log('Sauce déjà likée');
         if(sauce.usersLiked.includes(req.body.userId)){
+            console.log('L utilisateur aime déjà la sauce');
             Sauce.updateOne(
                 { _id: req.params.id },
                 { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } })
@@ -85,6 +87,7 @@ exports.likeSauce = (req, res, next) => {
                 .catch( (error) => console.log(error))
         }
         else if(sauce.usersDisliked.includes(req.body.userId)){
+            console.log('L utilisateur n aime pas la sauce');
             Sauce.updateOne(
                 { _id: req.params.id },
                 { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })
