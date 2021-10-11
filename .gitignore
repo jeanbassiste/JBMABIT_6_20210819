@@ -1,3 +1,4 @@
+#dossiers à ignorer dans git : node_modules et contenu de images (mais pas le dossier lui même)
 node_modules
 images/*
 !images/.keep
