@@ -1,3 +1,4 @@
+//Créé le modèle de données pour les sauces : détermine chaque valeur, son type et s'il est ou non obligatoire, puis l'exporte
 const mongoose = require('mongoose');
 
 const sauceSchema = mongoose.Schema({
