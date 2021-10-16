@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
+//Connexion des routes et du middleware image
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
@@ -34,5 +35,5 @@ app.use((req, res, next) => {
     console.log('Le server est lancé !');
 })
 
-//export du code
+//export de l'app
 module.exports = app;
